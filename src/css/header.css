@@ -157,3 +157,19 @@ input:active {
     50%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 0,100% 0,100% 0)}
     75%, 100%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,100% 100%,100% 100%)}
 }
+.load-image {
+  display: none;
+  margin: 0 auto;
+  box-sizing: border-box;
+  padding: 8px 16px;
+  border-radius: 8px;
+  height: 40px;
+  background-color: #4e75ff;
+  color: #fff;
+  font-family: Montserrat;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.5em;
+  letter-spacing: 0.64px;
+  border: none;
+}

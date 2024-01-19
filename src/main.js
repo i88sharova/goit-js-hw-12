@@ -8,13 +8,12 @@ const form = document.querySelector('.form');
 const gallery = document.querySelector('.gallery');
 const galleryBox = document.querySelector('.gallery-box');
 const loaderTop = document.querySelector('.loader');
-const loaderBottom = document.querySelector('.loader-bottom');
+const loaderBottom = document.querySelector('.loader-btn');
 const input = document.querySelector('input');
 const loadImg = document.querySelector('.load-image');
-const body = document.querySelector('body');
 
 let page = 1;
-let qr = 'cat';
+let q = 'cat';
 let per_page = 40;
 
 const lightbox = new SimpleLightbox('.gallery a', {
@@ -34,9 +33,9 @@ async function onSubmit(event) {
   loaderTop.style.display = 'block';
   loadImg.style.display = 'none';
   page = 1;
-  qr = event.target.elements.search.value.trim();
+  q = event.target.elements.search.value.trim();
 
-  if (!qr) {
+  if (!q) {
     gallery.innerHTML = '';
     iziToast.info({
       position: 'topRight',
@@ -49,7 +48,7 @@ async function onSubmit(event) {
   try {
     const {
       data: { hits, totalHits },
-    } = await searchImg(qr, page);
+    } = await searchImg(q, page);
 
     if (hits.length > 0) {
       loaderTop.style.display = 'none';
@@ -80,13 +79,13 @@ async function onSubmit(event) {
   }
 }
 
-function searchImg(qr, page) {
+function searchImg(q, page) {
   axios.defaults.baseURL = 'https://pixabay.com';
 
   return axios.get('/api/', {
     params: {
-      key: '37773269-50f55f614e71cb99e92638715',
-      qr,
+        key: '41728262-02d59bc227e0fcf400762914d',
+      q,
       image_type: 'photo',
       orientation: 'horizontal',
       safesearch: true,
@@ -123,10 +122,9 @@ async function loadMore(event) {
 
   try {
     page += 1;
-
     const {
       data: { hits, totalHits },
-    } = await searchImg(qr, page);
+    } = await searchImg(q, page);
     const totalPage = Math.ceil(totalHits / per_page);
 
     loadImg.style.display = 'block';
