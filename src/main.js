@@ -15,6 +15,7 @@ const loadImg = document.querySelector('.load-image');
 let page = 1;
 let q = 'cat';
 let per_page = 40;
+loaderTop.style.display = 'none';
 
 const lightbox = new SimpleLightbox('.gallery a', {
   nav: true,
