@@ -37,7 +37,7 @@ async function onSubmit(event) {
   q = event.target.elements.search.value.trim();
 
   if (!q) {
-    // gallery.innerHTML = '';
+    gallery.innerHTML = '';
     iziToast.info({
       position: 'topRight',
       message: 'Error enter any symbols',

@@ -128,31 +128,32 @@ input:active {
 .loader-top,
 .loader-bottom 
   {
-    width: 64px;
-    height: 64px;
+    width: 45px;
+    height: 45px;
     border: 3px dotted #FFF;
     border-style: solid solid dotted dotted;
     border-radius: 50%;
-    display: inline-block;
+    display: block;
     position: relative;
     box-sizing: border-box;
     animation: rotation 2s linear infinite;
+    
   
   }
   .loader-top,
 .loader-bottom ::after {
     content: '';  
     box-sizing: border-box;
-    position: absolute;
-    left: 0;
+    position: relative;
+    /* left: 0;
     right: 0;
     top: 0;
-    bottom: 0;
+    bottom:0; */
     margin: auto;
     border: 3px dotted #FF3D00;
     border-style: solid solid dotted;
-    width: 24px;
-    height: 24px;
+    width: 45px;
+    height: 45px;
     border-radius: 50%;
     animation: rotationBack 1s linear infinite;
     transform-origin: center center;
@@ -192,5 +193,8 @@ input:active {
   border: none;
 }
 .loader-bottom-box {
-  height: 72px;
+    
+  height: 65px;
 }
+
+
