@@ -7,9 +7,8 @@ import axios from 'axios';
 const form = document.querySelector('.form');
 const gallery = document.querySelector('.gallery');
 const galleryBox = document.querySelector('.gallery-box');
-const loaderTop = document.querySelector('.loader');
-const loaderBottom = document.querySelector('.loader-btn');
-const input = document.querySelector('input');
+const loaderTop = document.querySelector('.loader-top');
+const loaderBottom = document.querySelector('.loader-bottom');
 const loadImg = document.querySelector('.load-image');
 
 let page = 1;
@@ -34,10 +33,11 @@ async function onSubmit(event) {
   loaderTop.style.display = 'block';
   loadImg.style.display = 'none';
   page = 1;
+  gallery.innerHTML = '';
   q = event.target.elements.search.value.trim();
 
   if (!q) {
-    gallery.innerHTML = '';
+    // gallery.innerHTML = '';
     iziToast.info({
       position: 'topRight',
       message: 'Error enter any symbols',
