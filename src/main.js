@@ -93,7 +93,7 @@ async function onSubmit(event) {
 
 function searchImg(q, page) {
   axios.defaults.baseURL = 'https://pixabay.com';
-showLoader();
+// showLoader();
   return axios.get('/api/', {
     params: {
         key: '41728262-02d59bc227e0fcf400762914d',
