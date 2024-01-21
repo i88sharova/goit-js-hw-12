@@ -135,7 +135,6 @@ input:active {
     border-radius: 50%;
     display: block;
     position: relative;
-    box-sizing: border-box;
     animation: rotation 2s linear infinite;
     
   
@@ -144,11 +143,11 @@ input:active {
 .loader-bottom ::after {
     content: '';  
     box-sizing: border-box;
-    position: relative;
-    /* left: 0;
+    position: absolute;
+    left: 0;
     right: 0;
     top: 0;
-    bottom:0; */
+    bottom:0;
     margin: auto;
     border: 3px dotted #FF3D00;
     border-style: solid solid dotted;
@@ -178,7 +177,7 @@ input:active {
 
 .load-image {
   display: none;
-  margin: 0 auto;
+  margin: 15px auto;
   box-sizing: border-box;
   padding: 8px 16px;
   border-radius: 8px;
@@ -192,9 +191,8 @@ input:active {
   letter-spacing: 0.64px;
   border: none;
 }
-.loader-bottom-box {
-    
-  height: 65px;
-}
 
+ .hide {
+  display: none;
+} 
 

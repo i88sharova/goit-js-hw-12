@@ -8,13 +8,20 @@ const form = document.querySelector('.form');
 const gallery = document.querySelector('.gallery');
 const galleryBox = document.querySelector('.gallery-box');
 const loaderTop = document.querySelector('.loader-top');
-const loaderBottom = document.querySelector('.loader-bottom');
 const loadImg = document.querySelector('.load-image');
 
 let page = 1;
 let q = 'cat';
 let per_page = 40;
-loaderTop.style.display = 'none';
+
+
+function showLoader() {
+    loaderTop.classList.remove('hide');
+  
+}
+function stopLoader() {
+    loaderTop.classList.add('hide');
+}
 
 const lightbox = new SimpleLightbox('.gallery a', {
   nav: true,
@@ -30,7 +37,7 @@ loadImg.addEventListener('click', loadMore);
 
 async function onSubmit(event) {
   event.preventDefault();
-  loaderTop.style.display = 'block';
+  showLoader();
   loadImg.style.display = 'none';
   page = 1;
   gallery.innerHTML = '';
@@ -42,7 +49,8 @@ async function onSubmit(event) {
       position: 'topRight',
       message: 'Error enter any symbols',
     });
-    loaderTop.style.display = 'none';
+  
+    stopLoader();
     return;
   }
 
@@ -52,7 +60,9 @@ async function onSubmit(event) {
     } = await searchImg(q, page);
 
     if (hits.length > 0) {
-      loaderTop.style.display = 'none';
+      
+       stopLoader();
+      
       gallery.innerHTML = renderImg(hits);
       lightbox.refresh();
       iziToast.success({
@@ -75,14 +85,15 @@ async function onSubmit(event) {
   } catch (error) {
     console.log('Error');
   } finally {
-    loaderTop.style.display = 'none';
+    
+    stopLoader();
     event.target.reset();
   }
 }
 
 function searchImg(q, page) {
   axios.defaults.baseURL = 'https://pixabay.com';
-
+showLoader();
   return axios.get('/api/', {
     params: {
         key: '41728262-02d59bc227e0fcf400762914d',
@@ -116,18 +127,18 @@ function renderImg(hits = []) {
 }
 
 async function loadMore(event) {
-  loaderBottom.style.display = 'block';
+ showLoader();
   loadImg.style.display = 'none';
   const listItem = document.querySelector('.gallery-item:first-child');
   const itemHeight = listItem.getBoundingClientRect().height;
 
   try {
+    
     page += 1;
     const {
       data: { hits, totalHits },
     } = await searchImg(q, page);
     const totalPage = Math.ceil(totalHits / per_page);
-
     loadImg.style.display = 'block';
     gallery.insertAdjacentHTML('beforeend', renderImg(hits));
     lightbox.refresh();
@@ -142,7 +153,8 @@ async function loadMore(event) {
   } catch (error) {
     console.log(error);
   } finally {
-    loaderBottom.style.display = 'none';
+  
+    stopLoader();
     window.scrollBy({
       top: 2 * itemHeight,
       behavior: 'smooth',
