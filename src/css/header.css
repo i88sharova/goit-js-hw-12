@@ -127,6 +127,7 @@ input:active {
 
 .loader-top
   {
+    margin: 0 auto;
     width: 45px;
     height: 45px;
     border: 3px dotted #FFF;
